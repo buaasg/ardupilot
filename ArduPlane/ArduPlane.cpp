@@ -803,6 +803,7 @@ void Plane::update_navigation()
         break;
 
     case MANUAL:
+    case TestMode:
     case STABILIZE:
     case TRAINING:
     case INITIALISING:
