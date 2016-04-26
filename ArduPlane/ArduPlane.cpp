@@ -707,11 +707,13 @@ void Plane::update_flight_mode(void)
     case MANUAL:
 
 
-        for(int i = 0; i < 8; i++){
-         //  hal.rcout->write(i, hal.rcin->read(i)); // Copy input to Servos
-           hal.rcout->write(i, 1000); // Copy input to Servos
 
-        }
+        hal.rcout->write(1, 1000);
+        hal.rcout->write(2, 1000);
+        hal.rcout->write(3, 1000);
+        hal.rcout->write(4, 1000);
+        
+
         /*
         // servo_out is for Sim control only
         // ---------------------------------
@@ -743,9 +745,11 @@ void Plane::update_flight_mode(void)
         break;
 
     case TESTMODE:
-        for(int i = 0; i < 8; i++){
-         //  hal.rcout->write(i, hal.rcin->read(i)); // Copy input to Servos
-           hal.rcout->write(i, 1000); // Copy input to Servos
+    
+        hal.rcout->write(1, 1000);
+        hal.rcout->write(2, 1000);
+        hal.rcout->write(3, 1000);
+        hal.rcout->write(4, 1000);
 
         }
         break;
