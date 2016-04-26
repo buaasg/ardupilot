@@ -774,7 +774,7 @@ uint16_t Plane::throttle_min(void) const
 void Plane::set_servos(void)
 {
     if (control_mode == TESTMODE || control_mode == 25){
-        /*
+        
         hal.rcout->write(0, 1100);
         for(int i = 0; i < 10; i++){
          
@@ -791,7 +791,7 @@ void Plane::set_servos(void)
         for(int i = 0; i < 10; i++){
          
         }
-        */
+
     }
     else{
     int16_t last_throttle = channel_throttle->radio_out;

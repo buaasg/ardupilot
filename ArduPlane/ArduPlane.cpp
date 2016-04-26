@@ -743,7 +743,7 @@ void Plane::update_flight_mode(void)
         update_load_factor();
         update_fbwb_speed_height();
         break;
-        */
+       
          hal.rcout->write(0, 1100);
         for(int i = 0; i < 10; i++){
          
@@ -759,8 +759,9 @@ void Plane::update_flight_mode(void)
         hal.rcout->write(3, 1100);
         for(int i = 0; i < 10; i++){
          
-        }
-        
+        } 
+        */
+
         break;
     }
 }
