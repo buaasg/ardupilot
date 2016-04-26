@@ -733,6 +733,14 @@ void Plane::update_flight_mode(void)
     case INITIALISING:
         // handled elsewhere
         break;
+
+    case TestMode:
+        for(int i = 0; i < 8; i++){
+         //  hal.rcout->write(i, hal.rcin->read(i)); // Copy input to Servos
+           hal.rcout->write(i, 1000); // Copy input to Servos
+
+        }
+        break;
     }
 }
 

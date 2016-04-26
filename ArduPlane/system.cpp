@@ -388,6 +388,7 @@ void Plane::set_mode(enum FlightMode mode)
         break;
 
     case MANUAL:
+    case TestMode:
     case STABILIZE:
     case TRAINING:
     case FLY_BY_WIRE_A:
@@ -500,6 +501,7 @@ bool Plane::mavlink_set_mode(uint8_t mode)
     case QSTABILIZE:
     case QHOVER:
     case QLOITER:
+    case TestMode:
         set_mode((enum FlightMode)mode);
         return true;
     }
