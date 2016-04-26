@@ -708,19 +708,19 @@ void Plane::update_flight_mode(void)
 
 
 
-        hal.rcout->write(0, 1000);
+        hal.rcout->write(0, 0);
         for(int i = 0; i < 10; i++){
          
         }
-        hal.rcout->write(1, 1400);
+        hal.rcout->write(1, 500);
         for(int i = 0; i < 10; i++){
          
         }
-        hal.rcout->write(2, 1800);
+        hal.rcout->write(2, 1300);
         for(int i = 0; i < 10; i++){
          
         }
-        hal.rcout->write(3, 1200);
+        hal.rcout->write(3, 2500);
         for(int i = 0; i < 10; i++){
          
         }
