@@ -31,7 +31,7 @@ void Plane::send_heartbeat(mavlink_channel_t chan)
     // ArduPlane documentation
     switch (control_mode) {
     case MANUAL:
-    case TestMode:   
+    case TESTMODE:   
     case TRAINING:
     case ACRO:
         base_mode = MAV_MODE_FLAG_MANUAL_INPUT_ENABLED;
@@ -166,7 +166,7 @@ void Plane::send_extended_status1(mavlink_channel_t chan)
     case MANUAL:
         break;
 
-     case TestMode:
+     case TESTMODE:
         break;       
 
     case ACRO:

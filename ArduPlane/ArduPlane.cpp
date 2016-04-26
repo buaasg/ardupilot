@@ -705,6 +705,14 @@ void Plane::update_flight_mode(void)
         break;
 
     case MANUAL:
+
+
+        for(int i = 0; i < 8; i++){
+         //  hal.rcout->write(i, hal.rcin->read(i)); // Copy input to Servos
+           hal.rcout->write(i, 1000); // Copy input to Servos
+
+        }
+        /*
         // servo_out is for Sim control only
         // ---------------------------------
         channel_roll->servo_out = channel_roll->pwm_to_angle();
@@ -713,7 +721,7 @@ void Plane::update_flight_mode(void)
         break;
         //roll: -13788.000,  pitch: -13698.000,   thr: 0.000, rud: -13742.000
 
-
+*/
     case QSTABILIZE:
     case QHOVER:
     case QLOITER: {
@@ -734,7 +742,7 @@ void Plane::update_flight_mode(void)
         // handled elsewhere
         break;
 
-    case TestMode:
+    case TESTMODE:
         for(int i = 0; i < 8; i++){
          //  hal.rcout->write(i, hal.rcin->read(i)); // Copy input to Servos
            hal.rcout->write(i, 1000); // Copy input to Servos
@@ -803,7 +811,7 @@ void Plane::update_navigation()
         break;
 
     case MANUAL:
-    case TestMode:
+    case TESTMODE:
     case STABILIZE:
     case TRAINING:
     case INITIALISING:
