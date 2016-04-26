@@ -707,27 +707,6 @@ void Plane::update_flight_mode(void)
     case MANUAL:
 
 
-
-        hal.rcout->write(0, 0);
-        for(int i = 0; i < 10; i++){
-         
-        }
-        hal.rcout->write(1, 500);
-        for(int i = 0; i < 10; i++){
-         
-        }
-        hal.rcout->write(2, 1300);
-        for(int i = 0; i < 10; i++){
-         
-        }
-        hal.rcout->write(3, 2500);
-        for(int i = 0; i < 10; i++){
-         
-        }
-        break;
-        
-
-        /*
         // servo_out is for Sim control only
         // ---------------------------------
         channel_roll->servo_out = channel_roll->pwm_to_angle();
@@ -736,7 +715,6 @@ void Plane::update_flight_mode(void)
         break;
         //roll: -13788.000,  pitch: -13698.000,   thr: 0.000, rud: -13742.000
 
-*/
     case QSTABILIZE:
     case QHOVER:
     case QLOITER: {
@@ -758,11 +736,31 @@ void Plane::update_flight_mode(void)
         break;
 
     case TESTMODE:
+    /*
         // Thanks to Yury MonZon for the altitude limit code!
         nav_roll_cd = channel_roll->norm_input() * roll_limit_cd;
         nav_roll_cd = constrain_int32(nav_roll_cd, -roll_limit_cd, roll_limit_cd);
         update_load_factor();
         update_fbwb_speed_height();
+        break;
+        */
+         hal.rcout->write(0, 1100);
+        for(int i = 0; i < 10; i++){
+         
+        }
+        hal.rcout->write(1, 1100);
+        for(int i = 0; i < 10; i++){
+         
+        }
+        hal.rcout->write(2, 1100);
+        for(int i = 0; i < 10; i++){
+         
+        }
+        hal.rcout->write(3, 1100);
+        for(int i = 0; i < 10; i++){
+         
+        }
+        
         break;
     }
 }

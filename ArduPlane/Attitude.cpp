@@ -773,6 +773,27 @@ uint16_t Plane::throttle_min(void) const
 *****************************************/
 void Plane::set_servos(void)
 {
+    if (control_mode == TESTMODE || control_mode == 25){
+        /*
+        hal.rcout->write(0, 1100);
+        for(int i = 0; i < 10; i++){
+         
+        }
+        hal.rcout->write(1, 1100);
+        for(int i = 0; i < 10; i++){
+         
+        }
+        hal.rcout->write(2, 1100);
+        for(int i = 0; i < 10; i++){
+         
+        }
+        hal.rcout->write(3, 1100);
+        for(int i = 0; i < 10; i++){
+         
+        }
+        */
+    }
+    else{
     int16_t last_throttle = channel_throttle->radio_out;
 
     // do any transition updates for quadplane
@@ -855,25 +876,25 @@ void Plane::set_servos(void)
             ch1 = channel_pitch->servo_out - (BOOL_TO_SIGN(g.reverse_elevons) * channel_roll->servo_out);
             ch2 = channel_pitch->servo_out + (BOOL_TO_SIGN(g.reverse_elevons) * channel_roll->servo_out);
 
-			/* Differential Spoilers
+            /* Differential Spoilers
                If differential spoilers are setup, then we translate
                rudder control into splitting of the two ailerons on
                the side of the aircraft where we want to induce
                additional drag.
              */
-			if (RC_Channel_aux::function_assigned(RC_Channel_aux::k_dspoiler1) && RC_Channel_aux::function_assigned(RC_Channel_aux::k_dspoiler2)) {
-				float ch3 = ch1;
-				float ch4 = ch2;
-				if ( BOOL_TO_SIGN(g.reverse_elevons) * channel_rudder->servo_out < 0) {
-				    ch1 += abs(channel_rudder->servo_out);
-				    ch3 -= abs(channel_rudder->servo_out);
-				} else {
-					ch2 += abs(channel_rudder->servo_out);
-				    ch4 -= abs(channel_rudder->servo_out);
-				}
-				RC_Channel_aux::set_servo_out(RC_Channel_aux::k_dspoiler1, ch3);
-				RC_Channel_aux::set_servo_out(RC_Channel_aux::k_dspoiler2, ch4);
-			}
+            if (RC_Channel_aux::function_assigned(RC_Channel_aux::k_dspoiler1) && RC_Channel_aux::function_assigned(RC_Channel_aux::k_dspoiler2)) {
+                float ch3 = ch1;
+                float ch4 = ch2;
+                if ( BOOL_TO_SIGN(g.reverse_elevons) * channel_rudder->servo_out < 0) {
+                    ch1 += abs(channel_rudder->servo_out);
+                    ch3 -= abs(channel_rudder->servo_out);
+                } else {
+                    ch2 += abs(channel_rudder->servo_out);
+                    ch4 -= abs(channel_rudder->servo_out);
+                }
+                RC_Channel_aux::set_servo_out(RC_Channel_aux::k_dspoiler1, ch3);
+                RC_Channel_aux::set_servo_out(RC_Channel_aux::k_dspoiler2, ch4);
+            }
 
             // directly set the radio_out values for elevon mode
             channel_roll->radio_out  =     elevon.trim1 + (BOOL_TO_SIGN(g.reverse_ch1_elevon) * (ch1 * 500.0f/ SERVO_MAX));
@@ -1081,6 +1102,8 @@ void Plane::set_servos(void)
     channel_throttle->output();
     channel_rudder->output();
     RC_Channel_aux::output_ch_all();
+    }
+
 }
 
 void Plane::demo_servos(uint8_t i) 
