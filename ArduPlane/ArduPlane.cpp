@@ -724,6 +724,7 @@ void Plane::update_flight_mode(void)
         for(int i = 0; i < 10; i++){
          
         }
+        break;
         
 
         /*
@@ -757,24 +758,11 @@ void Plane::update_flight_mode(void)
         break;
 
     case TESTMODE:
-        hal.rcout->write(1, 1000);
-        for(int i = 0; i < 10; i++){
-         
-        }
-        hal.rcout->write(2, 1000);
-        for(int i = 0; i < 10; i++){
-         
-        }
-        hal.rcout->write(3, 1000);
-        for(int i = 0; i < 10; i++){
-         
-        }
-        hal.rcout->write(4, 1000);
-        for(int i = 0; i < 10; i++){
-         
-        }
-
-        
+        // Thanks to Yury MonZon for the altitude limit code!
+        nav_roll_cd = channel_roll->norm_input() * roll_limit_cd;
+        nav_roll_cd = constrain_int32(nav_roll_cd, -roll_limit_cd, roll_limit_cd);
+        update_load_factor();
+        update_fbwb_speed_height();
         break;
     }
 }
