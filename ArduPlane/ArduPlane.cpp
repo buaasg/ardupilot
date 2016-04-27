@@ -747,7 +747,7 @@ void Plane::update_flight_mode(void)
             
             //lateral stabilize,keep roll level,longitudinal manual
               nav_roll_cd = 0;
-              stabilize_roll(speed_scaler) //get channel_roll->servo_out
+              stabilize_roll(speed_scaler); //get channel_roll->servo_out
 
               //channel is defined by channel parameter 
               channel_roll->calc_pwm();  // get channel_roll->radio_out
@@ -769,7 +769,7 @@ void Plane::update_flight_mode(void)
               if (fly_inverted()) {
                   nav_pitch_cd = -nav_pitch_cd;
               }
-              stabilize_pitch(speed_scaler) //get channel_roll->servo_out
+              stabilize_pitch(speed_scaler) ;//get channel_roll->servo_out
 
               //channel is defined by channel parameter 
               channel_pitch->calc_pwm();  // get channel_pitch->radio_out
@@ -784,7 +784,7 @@ void Plane::update_flight_mode(void)
              //
               update_fbwb_speed_height(); 
 
-              stabilize_pitch(speed_scaler) //get channel_roll->servo_out
+              stabilize_pitch(speed_scaler) ;//get channel_roll->servo_out
 
               //channel is defined by channel parameter 
               channel_pitch->calc_pwm();  // get channel_pitch->radio_out
