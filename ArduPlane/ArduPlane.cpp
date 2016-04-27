@@ -102,6 +102,8 @@ void Plane::setup()
 
     // initialise the main loop scheduler
     scheduler.init(&scheduler_tasks[0], ARRAY_SIZE(scheduler_tasks));
+
+
 }
 
 void Plane::loop()
@@ -734,7 +736,7 @@ void Plane::update_flight_mode(void)
     case INITIALISING:
         // handled elsewhere
         break;
-
+// for mauanl input signals
     case TESTMODE:
 
         float speed_scaler = get_speed_scaler();
