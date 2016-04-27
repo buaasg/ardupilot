@@ -19,6 +19,21 @@ const AP_Param::Info Plane::var_info[] = {
     // @Description: 0 for longtitudinal idenfication, 1 for lateral with pitch_stabilize, 2 for lateral with fbwb speed_height
     // @User: Advanced
     GSCALAR(iden_mode,         "IDEN_MODE", IDEN_MODE_DEFAULT),
+    // @Param: IDEN_CHAN
+    // @DisplayName: idnetification chan longitudinal or lateral
+    // @Description: 0 for longtitudinal idenfication, 1 for lateral with pitch_stabilize, 2 for lateral with fbwb speed_height
+    // @User: Advanced
+    GSCALAR(iden_chan,         "IDEN_CHAN", IDEN_CHAN_DEFAULT),
+    // @Param: IDEN_DT
+    // @DisplayName: idnetification mode longitudinal or lateral
+    // @Description: 0 for longtitudinal idenfication, 1 for lateral with pitch_stabilize, 2 for lateral with fbwb speed_height
+    // @User: Advanced
+    GSCALAR(iden_dt,         "IDEN_DT", IDEN_DT_DEFAULT),
+    // @Param: IDEN_VAL
+    // @DisplayName: idnetification chan longitudinal or lateral
+    // @Description: 0 for longtitudinal idenfication, 1 for lateral with pitch_stabilize, 2 for lateral with fbwb speed_height
+    // @User: Advanced
+    GSCALAR(iden_val,         "IDEN_VAL", IDEN_VAL_DEFAULT),   
     // @Param: FORMAT_VERSION
     // @DisplayName: Eeprom format version number
     // @Description: This value is incremented when changes are made to the eeprom format

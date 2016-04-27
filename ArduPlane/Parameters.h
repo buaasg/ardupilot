@@ -333,9 +333,16 @@ public:
 
         // 254,255: reserved
         k_param_iden_mode,
+        k_param_iden_chan,
+        k_param_iden_dt,
+        k_param_iden_val,
     };
 
     AP_Int8 iden_mode; 
+    AP_Int8 iden_chan;
+    AP_float iden_dt;
+    AP_float iden_val;
+
 
     AP_Int16 format_version;
     AP_Int8 software_type;

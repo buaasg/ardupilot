@@ -433,4 +433,16 @@
 
 #ifndef IDEN_MODE_DEFAULT
   #define IDEN_MODE_DEFAULT 0
+#endif
+
+ #ifndef IDEN_CHAN_DEFAULT
+  #define IDEN_CHAN_DEFAULT 6
+ #endif
+
+  #ifndef IDEN_DT_DEFAULT
+  #define IDEN_DT_DEFAULT 0.4
+ #endif
+
+  #ifndef IDEN_VAL_DEFAULT
+  #define IDEN_VAL_DEFAULT 200
  #endif
