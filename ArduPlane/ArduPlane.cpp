@@ -742,7 +742,7 @@ void Plane::update_flight_mode(void)
         uint8_t lat_mode_1=1; //pitch_stabilize
         uint8_t lat_mode_2=2; //longitudinal  fbwb_speed_height
 
-        switch (iden_mode) //identificaiton program 0 for longitudinal,1 for lateral 1
+        switch (g.iden_mode) //identificaiton program 0 for longitudinal,1 for lateral 1
          {
             case lon_mode:
 
