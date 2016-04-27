@@ -778,7 +778,7 @@ void Plane::update_flight_mode(void)
               channel_throttle->radio_out    = channel_throttle->radio_in;
               channel_rudder->radio_out      = channel_rudder->radio_in;
 
-          }else if (g.iden_mode==lat_mode_lat_mode_2){
+          }else if (g.iden_mode==lat_mode_2){
 
                    //lateral maual,longitudinal  fbwb_speed_height
              //
