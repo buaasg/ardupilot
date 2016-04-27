@@ -982,6 +982,7 @@ private:
     void flap_slew_limit(int8_t &last_value, int8_t &new_value);
     bool suppress_throttle(void);
     void channel_output_mixer(uint8_t mixing_type, int16_t &chan1_out, int16_t &chan2_out);
+    void channel_output_mixer_my(uint8_t mixing_type, int16_t &chan1_out, int16_t &chan2_out);
     void flaperon_update(int8_t flap_percent);
     bool start_command(const AP_Mission::Mission_Command& cmd);
     bool verify_command(const AP_Mission::Mission_Command& cmd);

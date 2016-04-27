@@ -693,6 +693,51 @@ void Plane::channel_output_mixer(uint8_t mixing_type, int16_t &chan1_out, int16_
 }
 
 /*
+  implement a software VTail or elevon mixer. There are 4 different mixing modes
+ */
+void Plane::channel_output_mixer_my(uint8_t mixing_type, int16_t &chan1_out, int16_t &chan2_out)
+{
+    int16_t c1, c2;
+    int16_t v1, v2;
+
+    // first get desired elevator and rudder as -500..500 values
+    c1 = chan1_out-1500;
+    c2 = chan2_out-1500;
+
+    v1 = (c1 - c2)*1 ;
+    v2 = (c1 + c2)*1 ;
+
+    // now map to mixed output
+    switch (mixing_type) {
+    case MIXING_DISABLED:
+        return;
+
+    case MIXING_UPUP:
+        break;
+
+    case MIXING_UPDN:
+        v2 = -v2;
+        break;
+
+    case MIXING_DNUP:
+        v1 = -v1;
+        break;
+
+    case MIXING_DNDN:
+        v1 = -v1;
+        v2 = -v2;
+        break;
+    }
+
+    // scale for a 1500 center and 900..2100 range, symmetric
+    v1 = constrain_int16(v1, -600, 600);
+    v2 = constrain_int16(v2, -600, 600);
+
+    chan1_out = 1500 + v1;
+    chan2_out = 1500 + v2;
+}
+
+/*
   setup flaperon output channels
  */
 void Plane::flaperon_update(int8_t flap_percent)
@@ -774,23 +819,18 @@ uint16_t Plane::throttle_min(void) const
 void Plane::set_servos(void)
 {
     if (control_mode == TESTMODE || control_mode == 25){
-        
-        hal.rcout->write(0, 1100);
-        for(int i = 0; i < 10; i++){
-         
-        }
-        hal.rcout->write(1, 1100);
-        for(int i = 0; i < 10; i++){
-         
-        }
-        hal.rcout->write(2, 1100);
-        for(int i = 0; i < 10; i++){
-         
-        }
-        hal.rcout->write(3, 1100);
-        for(int i = 0; i < 10; i++){
-         
-        }
+              
+              if (g.vtail_output != MIXING_DISABLED) {
+                channel_output_mixer_my(g.vtail_output, channel_pitch->radio_out, channel_rudder->radio_out);
+              } else if (g.elevon_output != MIXING_DISABLED) {
+                channel_output_mixer_my(g.elevon_output, channel_pitch->radio_out, channel_roll->radio_out);
+              }
+
+              channel_roll->output();
+              channel_pitch->output();
+              channel_throttle->output();
+              channel_rudder->output();
+              RC_Channel_aux::output_ch_all();  //passthro direct
 
     }
     else{

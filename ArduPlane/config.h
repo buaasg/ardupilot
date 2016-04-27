@@ -430,3 +430,7 @@
 #else
 #define FIRMWARE_STRING THISFIRMWARE " (" GIT_VERSION ")"
 #endif
+
+#ifndef IDEN_MODE_DEFAULT
+  #define IDEN_MODE_DEFAULT 0
+ #endif

@@ -332,7 +332,10 @@ public:
         k_param_DataFlash = 253, // Logging Group
 
         // 254,255: reserved
+        k_param_iden_mode,
     };
+
+    AP_Int8 iden_mode; 
 
     AP_Int16 format_version;
     AP_Int8 software_type;

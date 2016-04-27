@@ -446,6 +446,7 @@ struct PACKED log_Mode {
     uint64_t time_us;
     uint8_t mode;
     uint8_t mode_num;
+    uint8_t iden_mode_u;
 };
 
 /*

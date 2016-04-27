@@ -736,31 +736,72 @@ void Plane::update_flight_mode(void)
         break;
 
     case TESTMODE:
-    /*
-        // Thanks to Yury MonZon for the altitude limit code!
-        nav_roll_cd = channel_roll->norm_input() * roll_limit_cd;
-        nav_roll_cd = constrain_int32(nav_roll_cd, -roll_limit_cd, roll_limit_cd);
-        update_load_factor();
-        update_fbwb_speed_height();
-        break;
+
+        float speed_scaler = get_speed_scaler();
+        uint8_t lon_mode=0; 
+        uint8_t lat_mode_1=1; //pitch_stabilize
+        uint8_t lat_mode_2=2; //longitudinal  fbwb_speed_height
+
+        switch (iden_mode) //identificaiton program 0 for longitudinal,1 for lateral 1
+         {
+            case lon_mode:
+
+            //lateral stabilize,keep roll level,longitudinal manual
+              nav_roll_cd = 0;
+              stabilize_roll(speed_scaler) //get channel_roll->servo_out
+
+              //channel is defined by channel parameter 
+              channel_roll->calc_pwm();  // get channel_roll->radio_out
+              //channel_roll->radio_out = constrain_int16(channel_roll->radio_out, 1300, 1700);
+              channel_pitch->radio_out       = channel_pitch->radio_in;
+              channel_throttle->radio_out    = channel_throttle->radio_in;
+              channel_rudder->radio_out      = channel_rudder->radio_in;
+
+              break;
+
+            case lat_mode_1:
+
+            //lateral maual,longitudinal keep pitch_stabilize 
+              float pitch_input = channel_pitch->norm_input();
+              if (pitch_input > 0) {
+                  nav_pitch_cd = pitch_input * aparm.pitch_limit_max_cd;
+              } else {
+                  nav_pitch_cd = -(pitch_input * pitch_limit_min_cd);
+              }
+              adjust_nav_pitch_throttle();
+              nav_pitch_cd = constrain_int32(nav_pitch_cd, pitch_limit_min_cd, aparm.pitch_limit_max_cd.get());
+              if (fly_inverted()) {
+                  nav_pitch_cd = -nav_pitch_cd;
+              }
+              stabilize_pitch(speed_scaler) //get channel_roll->servo_out
+
+              //channel is defined by channel parameter 
+              channel_pitch->calc_pwm();  // get channel_pitch->radio_out
+              //channel_roll->radio_out = constrain_int16(channel_roll->radio_out, 1300, 1700);
+              channel_roll->radio_out       = channel_roll->radio_in;
+              channel_throttle->radio_out    = channel_throttle->radio_in;
+              channel_rudder->radio_out      = channel_rudder->radio_in;
+
+              break;
+
+            case lat_mode_2:
+             //lateral maual,longitudinal  fbwb_speed_height
+             //
+              update_fbwb_speed_height(); 
+
+              stabilize_pitch(speed_scaler) //get channel_roll->servo_out
+
+              //channel is defined by channel parameter 
+              channel_pitch->calc_pwm();  // get channel_pitch->radio_out
+              //channel_roll->radio_out = constrain_int16(channel_roll->radio_out, 1300, 1700);
+              channel_roll->radio_out       = channel_roll->radio_in;
+              channel_throttle->calc_pwm(); // get channel_throttle->radio_out
+              channel_rudder->radio_out      = channel_rudder->radio_in;
+
+              break;
+         }     
+
        
-         hal.rcout->write(0, 1100);
-        for(int i = 0; i < 10; i++){
-         
-        }
-        hal.rcout->write(1, 1100);
-        for(int i = 0; i < 10; i++){
-         
-        }
-        hal.rcout->write(2, 1100);
-        for(int i = 0; i < 10; i++){
-         
-        }
-        hal.rcout->write(3, 1100);
-        for(int i = 0; i < 10; i++){
-         
-        } 
-        */
 
         break;
     }
