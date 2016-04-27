@@ -340,8 +340,8 @@ public:
 
     AP_Int8 iden_mode; 
     AP_Int8 iden_chan;
-    AP_float iden_dt;
-    AP_float iden_val;
+    AP_Float iden_dt;
+    AP_Float iden_val;
 
 
     AP_Int16 format_version;
