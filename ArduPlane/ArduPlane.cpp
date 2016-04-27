@@ -742,10 +742,9 @@ void Plane::update_flight_mode(void)
         uint8_t lat_mode_1=1; //pitch_stabilize
         uint8_t lat_mode_2=2; //longitudinal  fbwb_speed_height
 
-        switch (g.iden_mode) //identificaiton program 0 for longitudinal,1 for lateral 1
+        if  (g.iden_mode==lon_mode) //identificaiton program 0 for longitudinal,1 for lateral 1
          {
-            case lon_mode:
-
+            
             //lateral stabilize,keep roll level,longitudinal manual
               nav_roll_cd = 0;
               stabilize_roll(speed_scaler) //get channel_roll->servo_out
@@ -756,10 +755,7 @@ void Plane::update_flight_mode(void)
               channel_pitch->radio_out       = channel_pitch->radio_in;
               channel_throttle->radio_out    = channel_throttle->radio_in;
               channel_rudder->radio_out      = channel_rudder->radio_in;
-
-              break;
-
-            case lat_mode_1:
+          }else if (g.iden_mode==lat_mode_1){
 
             //lateral maual,longitudinal keep pitch_stabilize 
               float pitch_input = channel_pitch->norm_input();
@@ -782,10 +778,9 @@ void Plane::update_flight_mode(void)
               channel_throttle->radio_out    = channel_throttle->radio_in;
               channel_rudder->radio_out      = channel_rudder->radio_in;
 
-              break;
+          }else if (g.iden_mode==lat_mode_lat_mode_2){
 
-            case lat_mode_2:
-             //lateral maual,longitudinal  fbwb_speed_height
+                   //lateral maual,longitudinal  fbwb_speed_height
              //
               update_fbwb_speed_height(); 
 
@@ -797,11 +792,9 @@ void Plane::update_flight_mode(void)
               channel_roll->radio_out       = channel_roll->radio_in;
               channel_throttle->calc_pwm(); // get channel_throttle->radio_out
               channel_rudder->radio_out      = channel_rudder->radio_in;
+      
+          }
 
-              break;
-         }     
-
-       
 
         break;
     }
