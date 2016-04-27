@@ -26,7 +26,7 @@
 
 #define SCHED_TASK(func, rate_hz, max_time_micros) SCHED_TASK_CLASS(Plane, &plane, func, rate_hz, max_time_micros)
 
-
+ static uint16_t idenchan_pre=0;
 /*
   scheduler table - all regular tasks are listed here, along with how
   often they should be called (in 20ms units) and the maximum time
@@ -746,7 +746,7 @@ void Plane::update_flight_mode(void)
         uint8_t lat_mode_2=2; //longitudinal  fbwb_speed_height
         uint32_t t_start;
         float t_c; // time  "s"
-        uint16_t idenchan_pre;
+
         uint16_t idenchan_now=hal.rcin->read(g.iden_chan-1);
         if (idenchan_now > 1680 && idenchan_pre < 1320){
             t_start = millis();
