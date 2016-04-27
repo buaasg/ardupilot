@@ -26,7 +26,7 @@
 
 #define SCHED_TASK(func, rate_hz, max_time_micros) SCHED_TASK_CLASS(Plane, &plane, func, rate_hz, max_time_micros)
 
- static uint16_t idenchan_pre=0;
+ 
 /*
   scheduler table - all regular tasks are listed here, along with how
   often they should be called (in 20ms units) and the maximum time
@@ -99,6 +99,7 @@ void Plane::setup()
     rssi.init();
 
     init_ardupilot();
+
 
     // initialise the main loop scheduler
     scheduler.init(&scheduler_tasks[0], ARRAY_SIZE(scheduler_tasks));
@@ -744,9 +745,6 @@ void Plane::update_flight_mode(void)
         uint8_t thro_mode=3;  //throttle identificaiton
         uint8_t lat_mode_1=1; //pitch_stabilize
         uint8_t lat_mode_2=2; //longitudinal  fbwb_speed_height
-        uint32_t t_start;
-        float t_c; // time  "s"
-
         uint16_t idenchan_now=hal.rcin->read(g.iden_chan-1);
         if (idenchan_now > 1680 && idenchan_pre < 1320){
             t_start = millis();
@@ -766,7 +764,7 @@ void Plane::update_flight_mode(void)
               //channel is defined by channel parameter 
               channel_roll->calc_pwm();  // get channel_roll->radio_out
               //channel_roll->radio_out = constrain_int16(channel_roll->radio_out, 1300, 1700);
-              float iden_radio_input;
+              
               if (t_c<=0.4){
                 iden_radio_input = 0;
               }else if(t_c<=(0.4+1*g.iden_dt)&&t_c>0.4){
@@ -782,7 +780,7 @@ void Plane::update_flight_mode(void)
               }
 
               channel_pitch->radio_out       = channel_pitch->radio_in;
-              channel_pitch->radio_out       += int(iden_radio_input);
+              channel_pitch->radio_out       += (int)iden_radio_input;
               channel_throttle->radio_out    = channel_throttle->radio_in;
               channel_rudder->radio_out      = channel_rudder->radio_in;
 
@@ -795,7 +793,7 @@ void Plane::update_flight_mode(void)
               //channel is defined by channel parameter 
               channel_roll->calc_pwm();  // get channel_roll->radio_out
               //channel_roll->radio_out = constrain_int16(channel_roll->radio_out, 1300, 1700);
-              float iden_radio_input;
+             
               if (t_c<=0.4){
                 iden_radio_input = 0;
               }else if(t_c<=(0.4+g.iden_dt)&&t_c>0.4){
@@ -807,7 +805,7 @@ void Plane::update_flight_mode(void)
               }
               channel_pitch->radio_out       = channel_pitch->radio_in;
               channel_throttle->radio_out    = channel_throttle->radio_in;
-              channel_throttle->radio_out    += int(iden_radio_input);
+              channel_throttle->radio_out    += (int)iden_radio_input;
               channel_rudder->radio_out      = channel_rudder->radio_in;
 
           }else if (g.iden_mode==lat_mode_1){
@@ -829,7 +827,7 @@ void Plane::update_flight_mode(void)
               //channel is defined by channel parameter 
               channel_pitch->calc_pwm();  // get channel_pitch->radio_out
               //channel_roll->radio_out = constrain_int16(channel_roll->radio_out, 1300, 1700);
-              float iden_radio_input;
+              
               if (t_c<=0.4){
                 iden_radio_input = 0;
               }else if(t_c<=(0.4+1*g.iden_dt)&&t_c>0.4){
@@ -844,7 +842,7 @@ void Plane::update_flight_mode(void)
                 iden_radio_input = 0;
               }
               channel_roll->radio_out       = channel_roll->radio_in;
-              channel_roll->radio_out       += int(iden_radio_input);
+              channel_roll->radio_out       += (int)iden_radio_input;
               channel_throttle->radio_out    = channel_throttle->radio_in;
               channel_rudder->radio_out      = channel_rudder->radio_in;
 
@@ -859,7 +857,7 @@ void Plane::update_flight_mode(void)
               //channel is defined by channel parameter 
               channel_pitch->calc_pwm();  // get channel_pitch->radio_out
               //channel_roll->radio_out = constrain_int16(channel_roll->radio_out, 1300, 1700);
-              float iden_radio_input;
+             
               if (t_c<=0.4){
                 iden_radio_input = 0;
               }else if(t_c<=(0.4+1*g.iden_dt)&&t_c>0.4){
@@ -874,7 +872,7 @@ void Plane::update_flight_mode(void)
                 iden_radio_input = 0;
               }
               channel_roll->radio_out       = channel_roll->radio_in;
-              channel_roll->radio_out       += int(iden_radio_input);
+              channel_roll->radio_out       += (int)iden_radio_input;
               channel_throttle->calc_pwm(); // get channel_throttle->radio_out
               channel_rudder->radio_out      = channel_rudder->radio_in;
       

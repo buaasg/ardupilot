@@ -444,5 +444,5 @@
  #endif
 
   #ifndef IDEN_VAL_DEFAULT
-  #define IDEN_VAL_DEFAULT 200
+  #define IDEN_VAL_DEFAULT 200.0
  #endif

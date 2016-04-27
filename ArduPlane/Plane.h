@@ -146,6 +146,14 @@ public:
     void loop() override;
 
 private:
+
+
+        uint32_t t_start;
+        float t_c; // time  "s"
+        float iden_radio_input;
+        uint16_t idenchan_pre;
+        
+
     // key aircraft parameters passed to multiple libraries
     AP_Vehicle::FixedWing aparm;
     AP_HAL::BetterStream* cliSerial;
