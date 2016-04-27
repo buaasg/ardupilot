@@ -1,7 +1,7 @@
 /// -*- tab-width: 4; Mode: C++; c-basic-offset: 4; indent-tabs-mode: nil -*-
 
 #include <stdlib.h>
-#include <Parameters.h>
+
 
 #include <AP_AHRS/AP_AHRS.h>
 #include <AP_Baro/AP_Baro.h>
@@ -20,8 +20,7 @@
 
 extern const AP_HAL::HAL& hal;
  
- // Global parameters are all contained within the 'g' class.
- Parameters param_log;
+
 
 
 void DataFlash_Class::Init(const struct LogStructure *structures, uint8_t num_types)
@@ -1690,14 +1689,14 @@ void DataFlash_Class::Log_Write_Compass(const Compass &compass)
 
 
 // Write a mode packet.
-bool DataFlash_Backend::Log_Write_Mode(uint8_t mode)
+bool DataFlash_Backend::Log_Write_Mode(uint8_t mode, uint8_t iden_mode)
 {
     struct log_Mode pkt = {
         LOG_PACKET_HEADER_INIT(LOG_MODE_MSG),
         time_us  : AP_HAL::micros64(),
         mode     : mode,
         mode_num : mode,
-        iden_mode_u : param_log.iden_mode
+        iden_mode_u : iden_mode
     };
     return WriteCriticalBlock(&pkt, sizeof(pkt));
 }

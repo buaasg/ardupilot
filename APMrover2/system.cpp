@@ -317,7 +317,7 @@ void Rover::set_mode(enum mode mode)
 	}
 
 	if (should_log(MASK_LOG_MODE)) {
-        DataFlash.Log_Write_Mode(control_mode);
+        DataFlash.Log_Write_Mode(control_mode, 0);
     }
 }
 

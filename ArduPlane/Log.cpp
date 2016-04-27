@@ -521,7 +521,7 @@ void Plane::Log_Write_Vehicle_Startup_Messages()
 {
     // only 200(?) bytes are guaranteed by DataFlash
     Log_Write_Startup(TYPE_GROUNDSTART_MSG);
-    DataFlash.Log_Write_Mode(control_mode);
+    DataFlash.Log_Write_Mode(control_mode, g.iden_mode);
 }
 
 // start a new log

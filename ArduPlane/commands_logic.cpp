@@ -341,7 +341,7 @@ void Plane::do_RTL(void)
     setup_turn_angle();
 
     if (should_log(MASK_LOG_MODE))
-        DataFlash.Log_Write_Mode(control_mode);
+        DataFlash.Log_Write_Mode(control_mode, g.iden_mode);
 }
 
 void Plane::do_takeoff(const AP_Mission::Mission_Command& cmd)

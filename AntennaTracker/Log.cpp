@@ -34,7 +34,7 @@ const struct LogStructure Tracker::log_structure[] = {
 void Tracker::Log_Write_Vehicle_Startup_Messages()
 {
     // only 200(?) bytes are guaranteed by DataFlash
-    DataFlash.Log_Write_Mode(control_mode);
+    DataFlash.Log_Write_Mode(control_mode, 0);
 }
 
 // start a new log
