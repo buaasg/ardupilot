@@ -768,13 +768,13 @@ void Plane::update_flight_mode(void)
               if (t_c<=0.4){
                 iden_radio_input = 0;
               }else if(t_c<=(0.4+1*g.iden_dt)&&t_c>0.4){
-                iden_radio_input = 0.8*g.iden_val;
+                iden_radio_input = g.iden_fac1*g.iden_val;
               }else if(t_c<=(0.4+2*g.iden_dt)&&t_c>(0.4+1*g.iden_dt)){
-                iden_radio_input = (-1.2*g.iden_val);
+                iden_radio_input = (-g.iden_fac1*g.iden_val);
               }else if(t_c<=(0.4+4*g.iden_dt)&&t_c>(0.4+2*g.iden_dt)){
-                iden_radio_input = 1.1*g.iden_val;
+                iden_radio_input = g.iden_fac2*g.iden_val;
               }else if(t_c<=(0.4+7*g.iden_dt)&&t_c>(0.4+4*g.iden_dt)){
-                iden_radio_input = (-1.1*g.iden_val);
+                iden_radio_input = (-g.iden_fac3*g.iden_val);
               }else if(t_c>(0.4+7*g.iden_dt)){
                 iden_radio_input = 0;
               }
@@ -831,13 +831,13 @@ void Plane::update_flight_mode(void)
               if (t_c<=0.4){
                 iden_radio_input = 0;
               }else if(t_c<=(0.4+1*g.iden_dt)&&t_c>0.4){
-                iden_radio_input = 0.8*g.iden_val;
+                iden_radio_input = g.iden_fac1*g.iden_val;
               }else if(t_c<=(0.4+2*g.iden_dt)&&t_c>(0.4+1*g.iden_dt)){
-                iden_radio_input = (-1.2*g.iden_val);
+                iden_radio_input = (-g.iden_fac1*g.iden_val);
               }else if(t_c<=(0.4+4*g.iden_dt)&&t_c>(0.4+2*g.iden_dt)){
-                iden_radio_input = 1.1*g.iden_val;
+                iden_radio_input = g.iden_fac2*g.iden_val;
               }else if(t_c<=(0.4+7*g.iden_dt)&&t_c>(0.4+4*g.iden_dt)){
-                iden_radio_input = (-1.1*g.iden_val);
+                iden_radio_input = (-g.iden_fac3*g.iden_val);
               }else if(t_c>(0.4+7*g.iden_dt)){
                 iden_radio_input = 0;
               }
@@ -861,13 +861,13 @@ void Plane::update_flight_mode(void)
               if (t_c<=0.4){
                 iden_radio_input = 0;
               }else if(t_c<=(0.4+1*g.iden_dt)&&t_c>0.4){
-                iden_radio_input = 0.8*g.iden_val;
+                iden_radio_input = g.iden_fac1*g.iden_val;
               }else if(t_c<=(0.4+2*g.iden_dt)&&t_c>(0.4+1*g.iden_dt)){
-                iden_radio_input = (-1.2*g.iden_val);
+                iden_radio_input = (-g.iden_fac1*g.iden_val);
               }else if(t_c<=(0.4+4*g.iden_dt)&&t_c>(0.4+2*g.iden_dt)){
-                iden_radio_input = 1.1*g.iden_val;
+                iden_radio_input = g.iden_fac2*g.iden_val;
               }else if(t_c<=(0.4+7*g.iden_dt)&&t_c>(0.4+4*g.iden_dt)){
-                iden_radio_input = (-1.1*g.iden_val);
+                iden_radio_input = (-g.iden_fac3*g.iden_val);
               }else if(t_c>(0.4+7*g.iden_dt)){
                 iden_radio_input = 0;
               }

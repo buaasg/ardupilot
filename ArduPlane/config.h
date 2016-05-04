@@ -446,3 +446,15 @@
   #ifndef IDEN_VAL_DEFAULT
   #define IDEN_VAL_DEFAULT 200.0
  #endif
+
+  #ifndef IDEN_FAC1_DEFAULT
+  #define IDEN_FAC1_DEFAULT 1.1
+ #endif
+
+    #ifndef IDEN_FAC2_DEFAULT
+  #define IDEN_FAC2_DEFAULT 1.2
+ #endif
+
+    #ifndef IDEN_FAC3_DEFAULT
+  #define IDEN_FAC3_DEFAULT 1.8
+ #endif

@@ -18,22 +18,46 @@ const AP_Param::Info Plane::var_info[] = {
     // @DisplayName: idnetification mode longitudinal or lateral
     // @Description: 0 for longtitudinal idenfication, 1 for lateral with pitch_stabilize, 2 for lateral with fbwb speed_height
     // @User: Advanced
+    // @Values: 0:pitch,1:Roll_FBWA(pitch),2:Roll_FBWB(pitch),3:throttle
+    // @Bitmask: 0:pitch,1:Roll_FBWA(pitch),2:Roll_FBWB(pitch),3:throttle
     GSCALAR(iden_mode,         "IDEN_MODE", IDEN_MODE_DEFAULT),
+
     // @Param: IDEN_CHAN
     // @DisplayName: idnetification chan longitudinal or lateral
     // @Description: 0 for longtitudinal idenfication, 1 for lateral with pitch_stabilize, 2 for lateral with fbwb speed_height
     // @User: Advanced
     GSCALAR(iden_chan,         "IDEN_CHAN", IDEN_CHAN_DEFAULT),
+
     // @Param: IDEN_DT
     // @DisplayName: idnetification mode longitudinal or lateral
     // @Description: 0 for longtitudinal idenfication, 1 for lateral with pitch_stabilize, 2 for lateral with fbwb speed_height
     // @User: Advanced
     GSCALAR(iden_dt,         "IDEN_DT", IDEN_DT_DEFAULT),
+
     // @Param: IDEN_VAL
     // @DisplayName: idnetification chan longitudinal or lateral
     // @Description: 0 for longtitudinal idenfication, 1 for lateral with pitch_stabilize, 2 for lateral with fbwb speed_height
     // @User: Advanced
-    GSCALAR(iden_val,         "IDEN_VAL", IDEN_VAL_DEFAULT),   
+    GSCALAR(iden_val,         "IDEN_VAL", IDEN_VAL_DEFAULT), 
+
+    // @Param: IDEN_FAC1
+    // @DisplayName: factor of 3211's 1 defalut 1.1
+    // @Description: factor of 3211's 1 defalut 1.1
+    // @User: Advanced
+    GSCALAR(iden_fac1 "IDEN_FAC1", IDEN_FAC1_DEFAULT), 
+
+    // @Param: IDEN_FAC2
+    // @DisplayName: factor of 3211's 2 defalut 1.1
+    // @Description: factor of 3211's 2 defalut 1.1
+    // @User: Advanced
+    GSCALAR(iden_fac2 "IDEN_FAC2", IDEN_FAC2_DEFAULT), 
+
+    // @Param: IDEN_FAC3
+    // @DisplayName: factor of 3211's 3 defalut 1.1
+    // @Description: factor of 3211's 3 defalut 1.1
+    // @User: Advanced
+    GSCALAR(iden_fac3 "IDEN_FAC3", IDEN_FAC3_DEFAULT), 
+
     // @Param: FORMAT_VERSION
     // @DisplayName: Eeprom format version number
     // @Description: This value is incremented when changes are made to the eeprom format

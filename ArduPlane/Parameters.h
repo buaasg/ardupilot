@@ -336,12 +336,18 @@ public:
         k_param_iden_chan,
         k_param_iden_dt,
         k_param_iden_val,
+        k_param_iden_fac1,
+        k_param_iden_fac2,
+        k_param_iden_fac3,
     };
 
     AP_Int8 iden_mode; 
     AP_Int8 iden_chan;
     AP_Float iden_dt;
     AP_Float iden_val;
+    AP_Float iden_fac1;
+    AP_Float iden_fac2;
+    AP_Float iden_fac3;
 
 
     AP_Int16 format_version;
